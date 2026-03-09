@@ -2,6 +2,7 @@
 #define RENDER_H
 
 #include <raylib.h>
+#include "bugs.h"
 
 
 Camera3D camera;
@@ -17,9 +18,18 @@ void init_render(){
     camera.fovy = 60.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
+    PLAYER_POS = &camera.target;
+
     DisableCursor();
 
     SetTargetFPS(60);
+}
+
+void draw_bugs(){
+    for(int i = 0; i < BUG_COUNT; i++){
+        if(bugsList[i].didyagetit) continue;
+        DrawCube(bugsList[i].pos, 1, 1, 1, RED);
+    }
 }
 
 void render_main(){
@@ -35,6 +45,8 @@ void render_main(){
 
                     DrawCube(camera.target, 0.5f, 0.5f, 0.5f, PURPLE);
                     DrawCubeWires(camera.target, 0.5f, 0.5f, 0.5f, DARKPURPLE);
+
+                    draw_bugs();
 
             EndMode3D();
 
