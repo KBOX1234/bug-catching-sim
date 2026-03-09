@@ -1,3 +1,4 @@
+#include "bugs.h"
 #include "raylib.h"
 #include "render.h"
 
@@ -6,6 +7,7 @@
 
 int main(void){
 
+    init_bugs();
     init_render();
 
     while (!WindowShouldClose()){
