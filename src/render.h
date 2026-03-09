@@ -6,6 +6,7 @@
 #include "tree.h"
 
 #define DAY_PROGRESSION 0.001
+#define BUG_SCALE 0.5
 
 Camera3D camera;
 
@@ -39,7 +40,29 @@ void init_render(){
 void draw_bugs(){
     for(int i = 0; i < BUG_COUNT; i++){
         if(bugsList[i].didyagetit) continue;
-        DrawCube(bugsList[i].pos, 1, 1, 1, BLUE);
+        switch (bugsList[i].bugType) {
+            case BEE:
+                DrawBillboard(camera, BEE_TEXTURE, bugsList[i].pos, BUG_SCALE, TIME_CYCLE);
+                break;
+            case BEETLE:
+                DrawBillboard(camera, BEETLE_TEXTURE, bugsList[i].pos, BUG_SCALE, TIME_CYCLE);
+                break;
+
+            case EARTHWORM:
+                DrawBillboard(camera, EARTHWORM_TEXTURE, bugsList[i].pos, BUG_SCALE, TIME_CYCLE);
+                break;
+
+            case FIREFLY:
+                DrawBillboard(camera, FIREFLY_TEXTURE, bugsList[i].pos, BUG_SCALE, WHITE);
+                break;
+
+            case STICKBUG:
+                DrawBillboard(camera, STICKBUG_TEXTURE, bugsList[i].pos, BUG_SCALE, TIME_CYCLE);
+                break;
+
+
+        
+        }
     }
 }
 
@@ -72,7 +95,7 @@ void render_main(){
 
             BeginMode3D(camera);
 
-                DrawPlane((Vector3){ 0.0f, 0.0f, 0.0f }, (Vector2){ 32.0f, 32.0f }, TIME_CYCLE);
+                DrawPlane((Vector3){ 0.0f, 0.0f, 0.0f }, (Vector2){ 32.0f, 32.0f }, GREEN);
 
 
                     DrawCube(camera.target, 0.5f, 0.5f, 0.5f, RED);

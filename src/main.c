@@ -8,8 +8,8 @@
 
 int main(void){
 
-    init_bugs();
     init_render();
+    init_bugs();
     create_random_trees();
 
     while (!WindowShouldClose()){
