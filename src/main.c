@@ -5,6 +5,7 @@
 
 #define MAX_COLUMNS 20
 
+extern Camera camera;
 
 int main(void){
 
@@ -14,6 +15,7 @@ int main(void){
 
     while (!WindowShouldClose()){
         progress_time_of_day();
+        if(IsMouseButtonDown(MOUSE_ONE)) { getthebug(camera.target, ); }
         render_main();
     }
 
