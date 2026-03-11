@@ -55,28 +55,31 @@ void init_bugs(){
 }
 
 // returns the caught bug maybe
-int getthebug(Vector3 playerPos, Vector3 cameraPos, Vector3 bugPos, int bugType) {
+int getthebug(Vector3 playerPos, Vector3 cameraPos) {
 
 for(int i = 0; i < BUG_COUNT; i++) {
 
         
 
-        int minBugX = bugPos.x - 0.2f;
-        int minBugY = bugPos.y - 0.2f;
-        int minBugZ = bugPos.z - 0.2f;
+        int minBugX = bugsList[i].pos.x - 0.2f;
+        int minBugY = bugsList[i].pos.y - 0.2f;
+        int minBugZ = bugsList[i].pos.z - 0.2f;
 
-        int maxBugX = bugPos.x + 0.2f;
-        int maxBugY = bugPos.y + 0.2f;
-        int maxBugZ = bugPos.z + 0.2f;
+        int maxBugX = bugsList[i].pos.x + 0.2f;
+        int maxBugY = bugsList[i].pos.y + 0.2f;
+        int maxBugZ = bugsList[i].pos.z + 0.2f;
 
-        Vector3 netPos = playerPos+(cameraPos+playerPos);
+        Vector3 netPos;
+        netPos.x = playerPos.x+(cameraPos.x+playerPos.x);
+        netPos.y = playerPos.y+(cameraPos.y+playerPos.y);
+        netPos.z = playerPos.z+(cameraPos.z+playerPos.z);
 
         // the actual function logic stuff
         if(netPos.x > minBugX && netPos.x < maxBugX && netPos.y > minBugY && netPos.y < maxBugY && netPos.z > minBugZ && netPos.z < maxBugZ)
-        { bugsList[bugType].didyagetit = 1; return bugType; }
+        { bugsList[i].didyagetit = 1; return i; }
 
 } // end of for BUG_COUNT
-
+return -1;
 } // end of int getthebug 
 
 

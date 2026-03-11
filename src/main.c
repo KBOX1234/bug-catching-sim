@@ -15,7 +15,7 @@ int main(void){
 
     while (!WindowShouldClose()){
         progress_time_of_day();
-        if(IsMouseButtonDown(MOUSE_ONE)) { getthebug(camera.target, ); }
+        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)) { getthebug(camera.target, camera.position); }
         render_main();
     }
 
